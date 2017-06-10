@@ -1,2 +1,2 @@
-# ES6
-examples of ES6
+# ES2015 and examples
+examples of 
