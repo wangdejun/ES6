@@ -3,6 +3,11 @@ ES6新特性纵览及与ES5比较
 
 ### 1常量
 * 常量
+  Support for constants (also known as "immutable variables"), i.e., variables which cannot be re-assigned new content. Notice: this only makes the variable itself immutable, not its assigned content (for instance, in case the content is an object, this means the object itself can still be altered).
+  ```
+  const PI = 3.141593
+  PI > 3.0
+  ```
 ### 2作用域
 * 块作用域变量
 * 块作用域函数
