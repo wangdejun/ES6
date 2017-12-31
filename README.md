@@ -11,15 +11,25 @@ ES6新特性纵览及与ES5比较
 
 ### 2作用域
 * 块作用域变量
+  * Block-scoped variables (and constants) without hoisting. 
 * 块作用域函数
+  * Block-scoped function definitions.
 ### 3箭头函数
 * 表达式体
+  * More expressive closure syntax.
 * 声明式体
+  * More expressive closure syntax.
 * 词法This
+  * More intuitive handling of current object context.
+
 ### 4扩展参数处理
 * 默认参数值
+  * Simple and intuitive default values for function parameters.
 * 剩余参数
+  * Aggregation of remaining arguments into single parameter of variadic functions.
 * 扩展操作符
+  * Spreading of elements of an iterable collection (like an array or even a string) into both literal elements and individual function parameters.
+
 ### 5模板字面量
 * 字符串插入
 * 常见插入
