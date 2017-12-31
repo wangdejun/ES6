@@ -11,7 +11,26 @@ ES6新特性纵览及与ES5比较
 
 ### 2作用域
 * 块作用域变量
-  * Block-scoped variables (and constants) without hoisting. 
+  * 没有变量上举的块级作用域变量(或常量). 
+
+```
+for (let i = 0; i < a.length; i++) {
+    let x = a[i];
+    …
+}
+for (let i = 0; i < b.length; i++) {
+    let y = b[i];
+    …
+}
+
+let callbacks = [];
+for (let i = 0; i <= 2; i++) {
+    callbacks[i] = function () { return i * 2; };
+}
+callbacks[0]() === 0;
+callbacks[1]() === 2;
+callbacks[2]() === 4;
+```
 * 块作用域函数
   * Block-scoped function definitions.
 ### 3箭头函数
