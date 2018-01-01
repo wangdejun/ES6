@@ -166,7 +166,7 @@ ES6新特性纵览及与ES5比较
       console.log(x);
   }
   ```
-* 累继承，From Expressions
+* 类继承，From Expressions
 ```js
 var aggregation = (baseClass, ...mixins)=>{
   let base = class _Combined extends baseClass{
@@ -236,7 +236,23 @@ var aggregation = (baseClass, ...mixins)=>{
   console.log(bordercircle.toString())//BorderCircle > Circle > Shape(3)能显式的看到继承顺序
   ```
 * 静态成员
+  * 对静态类成员(方法)的简单支持
+  ```js
+  class Rectangle extends Shape{
+    ...
+    static defaultRectangle(){
+      return new Rectangle("default", 0, 0, 100, 100);
+    }
+  }
+
+  class Circle extends Shape{
+    ...
+    static defaultCircle(){
+      return new Circle("default", 0, 0, 100);
+  }
+  ```
 * Getter/Setter
+  
 ### 12标志类型(Symbol Type)
 * 
 ### 13迭代器
