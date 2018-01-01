@@ -275,7 +275,6 @@ var aggregation = (baseClass, ...mixins)=>{
       return this._width * this._height;
     }
   }
-  
   let r = new Rectangle(50, 20);
   r.area ===1000
 
