@@ -54,7 +54,7 @@ ES6新特性纵览及与ES5比较
   ```
   
 * 声明式体
-  ``js
+  ```js
     nums.forEach(v => {
       if (v % 5 === 0)
         fives.push(v);
