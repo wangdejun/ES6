@@ -355,11 +355,72 @@ var aggregation = (baseClass, ...mixins)=>{
       console.log(n);
   }
   ```
-### 14,生成器
+### 14,生成器(Generator)
+  * 支持生成器，用于生成序列，控制流可以暂停，可以继续，以便产生一个值序列
+  ```js
+  let fibonacci = {
+    *[Symbol.iterator](){
+      let pre = 0, cur = 1;
+      for(;;){
+        [pre,cur] = [cur, pre+cur];
+        yeild cur;
+      }
+    }
+  }
+  for(let n of fibonacci){
+    if(n>1000)
+      break;
+    console.log(n);
+  }
+  ```
+  * Generator Function, Direct Use
+  * Generator Matching
+  * Generator Control-Flow
+  * Generator Methods
+
 ### 15,图/集 弱图/集
+  * Set Data-Structure
+  * Map Data-Structure
+  * Weak-Link DataStructure
 ### 16,类型数组
+
 ### 17,新型内置数组
 ### 18,Promises
+  * 使用Promise
+    ```js
+    function msgAfterTimeout (msg, who, timeout) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(`${msg} Hello ${who}!`), timeout);
+        });
+    }
+    msgAfterTimeout("", "Foo", 100).then((msg) =>
+        msgAfterTimeout(msg, "Bar", 200)
+    ).then((msg) => {
+        console.log(`done after 300ms:${msg}`);
+    });
+    ```
+
+  * 合并promise
+    ```js
+    function fetchAsync (url, timeout, onData, onError) {
+        …
+    }
+    let fetchPromised = (url, timeout) => {
+        return new Promise((resolve, reject) => {
+            fetchAsync(url, timeout, resolve, reject);
+        });
+    }
+    Promise.all([
+        fetchPromised("http://backend/foo.txt", 500),
+        fetchPromised("http://backend/bar.txt", 500),
+        fetchPromised("http://backend/baz.txt", 500)
+    ]).then((data) => {
+        let [ foo, bar, baz ] = data;
+        console.log(`success: foo=${foo} bar=${bar} baz=${baz}`);
+    }, (err) => {
+        console.log(`error: ${err}`);
+    });
+    ```
 ### 19,元编程
 ### 20,国际化和本地化
 
