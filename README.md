@@ -75,10 +75,33 @@ ES6新特性纵览及与ES5比较(中文版)
 ### 4,扩展参数处理
 * 默认参数值
   * 简单直观的函数参数默认值。
-* 剩余参数
+  ```js
+  function f(x,y=7,z=42){
+    return x+y+z;
+  }
+  f(1) === 50;
+  ```
+* 汇聚剩余参数
   * Aggregation of remaining arguments into single parameter of variadic functions.
+  ```js
+  function f (x, y, ...a) {
+    return (x + y) * a.length
+  }
+  f(1, 2, "hello", true, 7) === 9
+  ```
 * 扩展操作符
-  * Spreading of elements of an iterable collection (like an array or even a string) into both literal elements and individual function parameters.
+  * 扩展为单个字面元素组成的可迭代集(比如数组或者字符串)或者单个函数参数(Spreading of elements of an iterable collection (like an array or even a string) into both literal elements and individual function parameters.)
+  ```js
+  var params = ["Hello", true, 7]
+  var other = [1, 2, ...params]
+
+  function f(x,y,...a){
+    return (x+y)*a.length;
+  }
+  f(1,2,...params) === 9
+  var str = "foo"
+  var chars = [...str]
+  ```
 
 ### 5,模板字面量
 * 字符串插入
