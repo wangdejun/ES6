@@ -102,7 +102,31 @@ ES6新特性纵览及与ES5比较(中文版)
 * Fail-Soft Destructing
 ### 10,模块
 * 导入/导出值
+  ```js
+  //  lib/math.js
+  export function sum (x, y) { return x + y };
+  export var pi = 3.141593;
+
+  //  someApp.js
+  import * as math from "lib/math";
+  console.log("2π = " + math.sum(math.pi, math.pi));
+
+  //  otherApp.js
+  import { sum, pi } from "lib/math";
+  console.log("2π = " + sum(pi, pi));
+  ```
 * 默认导入导出/通配符
+  ```js
+  //  lib/mathplusplus.js
+  export * from "lib/math";
+  export var e = 2.71828182846;
+  export default (x) => Math.exp(x);
+
+  //  someApp.js
+  import exp, { pi, e } from "lib/mathplusplus";
+  console.log("e^{π} = " + exp(pi));
+  ```
+
 ### 11,类
 * 类定义
   ```js
@@ -383,8 +407,17 @@ var aggregation = (baseClass, ...mixins)=>{
   * Map Data-Structure
   * Weak-Link DataStructure
 ### 16,类型数组
-
-### 17,新型内置数组
+  * Typed Array
+### 17,新型内置方法
+  * 对象赋值
+  * 数组元素查找
+  * 字符串复制
+  * 字符串搜索
+  * 数字类型检查
+  * 数字安全检查
+  * 数字对比
+  * 数字Trunction
+  * 数字Sign Determination
 ### 18,Promises
   * 使用Promise
     ```js
@@ -422,5 +455,10 @@ var aggregation = (baseClass, ...mixins)=>{
     });
     ```
 ### 19,元编程
+  * Proxying
+  * Reflection
 ### 20,国际化和本地化
-
+  * Collation
+  * Number Formatting
+  * Currency Formatting
+  * Data/Time Formatting
