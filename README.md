@@ -280,8 +280,81 @@ var aggregation = (baseClass, ...mixins)=>{
 
   ```
 ### 12,标志类型(Symbol Type)
-* 
+* 用来作为对象属性的不可重和不可变数据类型，Symbol类型有可选的描述选项，但是只用来debug用
+  ```js
+  Symbol("foo") !== Symbol("foo");
+  const foo = Symbol();
+  const bar = Symbol();
+  typeof foo === "symbol";
+  typeof bar === "symbol";
+  let obj = {};
+  obj[foo] = "foo";
+  obj[bar] = "bar";
+  JSON.stringify(obj); // {}
+  Object.keys(obj); // []
+  Object.getOwnPropertyNames(obj); // []
+  Object.getOwnPropertySymbols(obj); // [ foo, bar ]
+  ```
+* 全局Symbol
+  ```js
+  Symbol.for("app.foo") === Symbol.for("app.foo")
+  const foo = Symbol.for("app.foo");
+  const bar = Symbol.for("app.bar");
+  Symbol.keyFor(foo) === "app.foo";
+  Symbol.keyFor(bar) === "app.bar";
+  typeof foo === "symbol";
+  typeof bar === "symbol";
+  let obj = {};
+  obj[foo] = "foo";
+  obj[bar] = "bar";
+  JSON.stringify(obj); // {}
+  Object.keys(obj); // []
+  Object.getOwnPropertyNames(obj); // []
+  Object.getOwnPropertySymbols(obj); // [ foo, bar ]
+  ```
 ### 13,迭代器
+* 第一，允许对象定制他们自己的遍历行为。
+* 第二，支持迭代协议产生一个值序列(有穷或无穷)。
+* 第三，为可遍历对象提供了一种便捷的遍历操作。
+  ```js
+  //ES6
+  let fibonacci = {
+      [Symbol.iterator]() {
+          let pre = 0, cur = 1;
+          return {
+            next () {
+                [ pre, cur ] = [ cur, pre + cur ];
+                return { done: false, value: cur };
+            }
+          };
+      }
+  }
+  for (let n of fibonacci) {
+      if (n > 1000)
+          break;
+      console.log(n);
+  }
+
+  //ES5
+  var fibonacci = {
+      next: (function () {
+          var pre = 0, cur = 1;
+          return function () {
+              tmp = pre;
+              pre = cur;
+              cur += tmp;
+              return cur;
+          };
+      })()
+  };
+  var n;
+  for (;;) {
+      n = fibonacci.next();
+      if (n > 1000)
+          break;
+      console.log(n);
+  }
+  ```
 ### 14,生成器
 ### 15,图/集 弱图/集
 ### 16,类型数组
