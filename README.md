@@ -45,11 +45,32 @@ ES6新特性纵览及与ES5比较
     ```
 ### 3箭头函数
 * 表达式体
-  * More expressive closure syntax.
+  ```js
+  let evens = [2,4,6,8,10];
+  let odds = [];
+  odds  = evens.map(v => v + 1);
+  pairs = evens.map(v => ({ even: v, odd: v + 1 }));
+  nums  = evens.map((v, i) => v + i);
+  ```
+  
 * 声明式体
-  * More expressive closure syntax.
-* 绑定词法环境
+  ``js
+    nums.forEach(v => {
+      if (v % 5 === 0)
+        fives.push(v);
+    })
+  ```
+
+* Lexical this
   * 更加直观绑定地对象词法环境，因此可以直接用this, this指向函数体内部context
+  
+  ```js
+  this.nums.forEach((v)=>{
+    if(v%5===0){
+      this.fives.push(v);
+    }
+  })
+  ```
 
 ### 4扩展参数处理
 * 默认参数值
@@ -101,7 +122,7 @@ ES6新特性纵览及与ES5比较
   ```
 * 类继承
   ```js
-  //Shaple class 
+  //Shaple class
   class Shape{
       constructor(id, x, y){
           this.id = id;
@@ -134,7 +155,6 @@ ES6新特性纵览及与ES5比较
   console.log(shape);
   console.log(rectangle);
   console.log(circle);
-
   //iterate the attributes in the circle instance created above.
   //*NOTICE*/ for...of(new in ES6) cannot iterate attrs in a Object intance which is not iterable.
   for(i of circle){
@@ -147,7 +167,74 @@ ES6新特性纵览及与ES5比较
   }
   ```
 * 累继承，From Expressions
+```js
+var aggregation = (baseClass, ...mixins)=>{
+  let base = class _Combined extends baseClass{
+    constructor(...args){
+      super(...args);
+      mixins.forEach((mixin)=>{
+        mixin.prototype.initializer.call(this);
+      })
+    }
+  }
+  let copyProps = (target, source)=>{
+    Object.getOwnPropertyNames(source)
+          .concat(Object.getOwnPropertySymbols(source))
+          .forEach((prop)=>{
+            if(prop.match(/^(?:constructor|prototype|arguments|caller|name|bind|apply|toString|length)$/)){
+              return;
+            }
+            Object.defineProperty(target, prop, Object.getOwnPropertyDescriptor(source, prop))
+          })
+  }
+  mixins.forEach((mixin)=>{
+    copyProps(base.prototype, mixin.prototype);
+    copyProps(base, mixin);
+  })
+  return base;
+}
+```
 * 基类
+  * 直观地使用基类构造函数和方法
+  ```js
+  //Shaple class 
+  class Shape{
+      constructor(id, x, y){
+          this.id = id;
+          this.move(x, y);
+      }
+      move(x, y){
+          this.x = x;
+          this.y = y;
+      }
+      toString(){
+          return `Shape(${ this.id })`
+      }
+  }
+  // Circle class inheriting from Shape class also
+  class Circle extends Shape{
+      constructor(id,x,y,radius){
+          super(id, x, y);
+          this.radius = radius;
+      }
+      toString(){
+          return "Circle > " + super.toString();
+      }
+  }
+  // BorderCircle class inheriting from Circle 'subclass'
+  class BorderCircle extends Circle{
+      constructor(id, x, y, radius, borderWidth){
+          super(id, x, y, radius);
+          this.borderWidth = borderWidth;
+      }
+      toString(){
+          return "BorderCircle > " + super.toString();
+      }
+  }
+
+  let bordercircle = new BorderCircle(3,800,600,16.5, 2)
+  console.log(bordercircle.toString())//BorderCircle > Circle > Shape(3)能显式的看到继承顺序
+  ```
 * 静态成员
 * Getter/Setter
 ### 12标志类型(Symbol Type)
