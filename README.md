@@ -4,7 +4,7 @@ ES6新特性纵览及与ES5比较
 ### 1常量
 * 常量
   * 支持常量(不可改变量)，换句话说，变量一旦被定义，则不能被重新赋值。注意，只是变量本身不能够被改变，而常量指向的对象可以改变的。
-    ```
+    ```js
     const PI = 3.141593
     PI > 3.0
     ```
@@ -12,7 +12,7 @@ ES6新特性纵览及与ES5比较
 ### 2作用域
 * 块作用域变量
   * 没有变量上举的块级作用域变量(或常量). 
-    ```
+    ```js
     for (let i = 0; i < a.length; i++) {
         let x = a[i];
         …
@@ -30,10 +30,9 @@ ES6新特性纵览及与ES5比较
     callbacks[1]() === 2;
     callbacks[2]() === 4;
     ```
-
 * 块作用域函数
   * Block-scoped function definitions.
-    ```
+    ```js
       {
         function foo(){ return 1;}
         foo()===1;
@@ -85,7 +84,7 @@ ES6新特性纵览及与ES5比较
 * 默认导入导出/通配符
 ### 11类
 * 类定义
-  ```
+  ```js
   class Shape{
       constructor(id, x, y){
           this.id = id;
@@ -101,7 +100,7 @@ ES6新特性纵览及与ES5比较
   console.log(shape);
   ```
 * 类继承
-  ```
+  ```js
   //Shaple class 
   class Shape{
       constructor(id, x, y){
