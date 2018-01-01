@@ -1,4 +1,4 @@
-ES6新特性纵览及与ES5比较
+ES6新特性纵览及与ES5比较(中文版)
 <a href='http://es6-features.org/'>来自es6-features.org<a>
 
 ### 1,常量
