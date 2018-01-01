@@ -105,8 +105,33 @@ ES6新特性纵览及与ES5比较(中文版)
 
 ### 5,模板字面量
 * 字符串插入
+  * 向单行或多行字符串插入字符串(可以直接向多行插入字符串，与python类似)
+  ```js
+  var customer = { name: "Foo" }
+  var card = { amount: 7, product: "Bar", unitprice: 42 }
+  var message = `Hello ${customer.name},
+  want to buy ${card.amount} ${card.product} for
+  a total of ${card.amount * card.unitprice} bucks?`
+  console.log(message);
+  ```
 * 常见插入
+  向任意方法插入字符串
+  ```js
+  get`http://example.com/foo?bar=${bar + baz}&quux=${quux}`
+  ```
 * Raw String Access
+  ```js
+  function quux (strings, ...values) {
+      strings[0] === "foo\n"
+      strings[1] === "bar"
+      strings.raw[0] === "foo\\n"
+      strings.raw[1] === "bar"
+      values[0] === 42
+  }
+  quux `foo\n${ 42 }bar`
+
+  console.log(String.raw `foo\n${ 42 }bar` )
+  ```
 ### 6,扩展字面量
 * 二进制和八进制字面量
 * Unicode字符串 & 正则表达式字面量
