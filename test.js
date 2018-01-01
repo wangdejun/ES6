@@ -23,6 +23,7 @@ class Rectangle extends Shape{
         return "Rectangle > "+super.toString();
     }
 }
+
 // Circle class inheriting from Shape class also
 class Circle extends Shape{
     constructor(id,x,y,radius){

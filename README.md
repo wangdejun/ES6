@@ -252,7 +252,34 @@ var aggregation = (baseClass, ...mixins)=>{
   }
   ```
 * Getter/Setter
+  * Getter/Setter 也直接在类内部
+  ```js
+  class Rectangle{
+    constructor(width, height){
+      this._width = width;
+      this._height = height;
+    }
+    set width(width){
+      this._width = width;
+    }
+    get width(){
+      return this._width;
+    }
+    set height(height){
+      this._height = height;
+    }
+    get height(){
+      return this._height;
+    }
+    get area(){
+      return this._width * this._height;
+    }
+  }
   
+  let r = new Rectangle(50, 20);
+  r.area ===1000
+
+  ```
 ### 12标志类型(Symbol Type)
 * 
 ### 13迭代器
