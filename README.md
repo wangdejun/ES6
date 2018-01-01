@@ -31,6 +31,7 @@ callbacks[0]() === 0;
 callbacks[1]() === 2;
 callbacks[2]() === 4;
 ```
+
 * 块作用域函数
   * Block-scoped function definitions.
 ### 3箭头函数
@@ -38,12 +39,12 @@ callbacks[2]() === 4;
   * More expressive closure syntax.
 * 声明式体
   * More expressive closure syntax.
-* 词法This
-  * More intuitive handling of current object context.
+* 绑定词法环境
+  * 更加直观绑定地对象词法环境，因此可以直接用this, this指向函数体内部context
 
 ### 4扩展参数处理
 * 默认参数值
-  * Simple and intuitive default values for function parameters.
+  * 简单直观的函数参数默认值。
 * 剩余参数
   * Aggregation of remaining arguments into single parameter of variadic functions.
 * 扩展操作符
