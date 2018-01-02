@@ -177,8 +177,36 @@ ES6新特性纵览及与ES5比较(中文版)
   ```
 ### 8,增强对象属性
 * property shorthand
-* Computed Property Names
-* Method Porperties
+  ```js
+  let x = 'key1';
+  let y = 'key2';
+  obj = { x, y }
+  console.log(obj);
+  ```
+* Computed属性名
+  ```js
+  function quux(){
+    return 'function expression value'
+  }
+  let obj = {
+      foo: "bar",
+      [ "baz" + quux() ]: 42
+  }
+  console.log(obj);
+  ```
+* 方法属性(Method Porperties)
+  ```js
+  let obj = {
+    foo(a,b){
+      return a+b;
+      }, 
+    bar(x,y){
+      return x*y
+      },
+    //generator function
+    *quux(x,y){return x/y}}
+  ```
+
 ### 9,解构赋值
 * Array Mathching
 * Object Matching, Shorthand Notation
