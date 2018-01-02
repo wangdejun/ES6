@@ -646,23 +646,58 @@ var aggregation = (baseClass, ...mixins)=>{
     })
   ```
   * Generator Methods
-  ```js
-    class Clz {
-        * bar () {
-          ...
-        }
-    }
-    let Obj = {
-        * foo () {
-          ...
-        }
-    }
+  ```js
+  class Clz {
+      * bar () {
+        ...
+      }
+  }
+  let Obj = {
+      * foo () {
+        ...
+      }
+  }
   ```
-
 ### 15,图/集 弱图/集
   * Set Data-Structure
+  * 需要特别指出的是，Set的遍历顺序就是插入顺序。这个特性有时非常有用，比如使用 Set 保存一个回调函数列表，调用时就能保证按照添加顺序调用。(阮一峰)
+  ```js
+  let s = new Set()
+  s.add("hello").add("goodbye").add("hello")
+  s.size === 2
+  s.has("hello") === true
+  for (let key of s.values()) // insertion order
+      console.log(key)
+  ```
   * Map Data-Structure
+  * Cleaner data-structure for common algorithms based on maps;
+  ```js
+  let m = new Map()
+  let s = Symbol()
+  m.set("hello", 42)
+  m.set(s, 34)
+  m.get(s) === 34
+  m.size === 2
+  for (let [ key, val ] of m.entries())
+      console.log(key + " = " + val)
+  ```
   * Weak-Link DataStructure
+  * Memory-leak-free Object-key's side-by-side data structures
+  ```js
+  let isMarked = new WeakSet()
+  let attachedData = new WeakMap()
+  
+  export classs Node{
+    constructor(id){ this.id = id}
+    mark(){isMarked.add(this)}
+    unmark(){isMarked.delete(this)}
+    marked(){return isMarked.has(this)}
+    set data (data){attachedData.set(this, data)}
+    get data (){return attachedData.get(this)}
+  }
+
+  let foo = new Node("foo")
+  ```
 ### 16,类型数组
   * Typed Array
 ### 17,新型内置方法
