@@ -588,8 +588,76 @@ var aggregation = (baseClass, ...mixins)=>{
     }
   ```
   * Generator Matching
+    * 支持生成函数，生成函数就是控制流可以停止和前进的以生成序列值的函数。
+  ```js
+  let fibonacci = function* (numbers) {
+      let pre = 0, cur = 1
+      while (numbers-- > 0) {
+          [ pre, cur ] = [ cur, pre + cur ]
+          yield cur
+      }
+  }
+  for (let n of fibonacci(1000))
+      console.log(n)
+  let numbers = [ ...fibonacci(1000) ]
+  let [ n1, n2, n3, ...others ] = fibonacci(1000)
+  ```
   * Generator Control-Flow
+  ```js
+    //generic asynchronous control-flow driver
+    function async(proc,...params){
+      var iterator = proc(...params)
+      return new Promise((resolve, reject)=>{
+        let loop = (value)=>{
+          let result;
+          try{
+            result = iterator.next(value);
+          }catch(err){
+            reject(err);
+          }
+          if(result.done)
+            resolve(result.value)
+          else if(typeof result.value === 'object' && typeof result.value.then ==="function")
+            result.value.then((value)=>{
+              loop(value)
+            },(err)=>{
+              reject(err);
+            })
+          else
+            loop(result.value)
+        }
+        loop();
+      })
+    }
+    // application-specific asynchronous builder
+    function makeAsync(text, after){
+      return new Promise((resolve, reject)=>{
+        setTimeout(()=>resolve(text),after)
+      })
+    }
+    // application-specific asynchronous procedure
+    async(function* (greeting){
+      let foo = yield makeAsync("foo", 300);
+      let bar = yield makeAsync("bar", 200);
+      let baz = yield makeAsync("baz", 100);
+      return `${greeting} ${foo} ${bar} ${baz}`}, "Hello").then((msg)=>{
+        console.log("RESULT:", msg)
+      })
+    })
+  ```
   * Generator Methods
+  ```js
+    class Clz {
+        * bar () {
+          ...
+        }
+    }
+    let Obj = {
+        * foo () {
+          ...
+        }
+    }
+  ```
 
 ### 15,图/集 弱图/集
   * Set Data-Structure
@@ -609,40 +677,40 @@ var aggregation = (baseClass, ...mixins)=>{
   * 数字Sign Determination
 ### 18,Promises
   * 使用Promise
-    ```js
-    function msgAfterTimeout (msg, who, timeout) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => resolve(`${msg} Hello ${who}!`), timeout);
-        });
-    }
-    msgAfterTimeout("", "Foo", 100).then((msg) =>
-        msgAfterTimeout(msg, "Bar", 200)
-    ).then((msg) => {
-        console.log(`done after 300ms:${msg}`);
-    });
-    ```
+  ```js
+  function msgAfterTimeout (msg, who, timeout) {
+      return new Promise((resolve, reject) => {
+          setTimeout(() => resolve(`${msg} Hello ${who}!`), timeout);
+      });
+  }
+  msgAfterTimeout("", "Foo", 100).then((msg) =>
+      msgAfterTimeout(msg, "Bar", 200)
+  ).then((msg) => {
+      console.log(`done after 300ms:${msg}`);
+  });
+  ```
 
   * 合并promise
-    ```js
-    function fetchAsync (url, timeout, onData, onError) {
-        …
-    }
-    let fetchPromised = (url, timeout) => {
-        return new Promise((resolve, reject) => {
-            fetchAsync(url, timeout, resolve, reject);
-        });
-    }
-    Promise.all([
-        fetchPromised("http://backend/foo.txt", 500),
-        fetchPromised("http://backend/bar.txt", 500),
-        fetchPromised("http://backend/baz.txt", 500)
-    ]).then((data) => {
-        let [ foo, bar, baz ] = data;
-        console.log(`success: foo=${foo} bar=${bar} baz=${baz}`);
-    }, (err) => {
-        console.log(`error: ${err}`);
-    });
-    ```
+  ```js
+  function fetchAsync (url, timeout, onData, onError) {
+      …
+  }
+  let fetchPromised = (url, timeout) => {
+      return new Promise((resolve, reject) => {
+          fetchAsync(url, timeout, resolve, reject);
+      });
+  }
+  Promise.all([
+      fetchPromised("http://backend/foo.txt", 500),
+      fetchPromised("http://backend/bar.txt", 500),
+      fetchPromised("http://backend/baz.txt", 500)
+  ]).then((data) => {
+      let [ foo, bar, baz ] = data;
+      console.log(`success: foo=${foo} bar=${bar} baz=${baz}`);
+  }, (err) => {
+      console.log(`error: ${err}`);
+  });
+  ```
 ### 19,元编程
   * Proxying
   * Reflection
