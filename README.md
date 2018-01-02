@@ -81,7 +81,7 @@ ES6新特性纵览及与ES5比较(中文版)
   }
   f(1) === 50;
   ```
-* 汇聚剩余参数
+* 聚合剩余参数
   * Aggregation of remaining arguments into single parameter of variadic functions.
   ```js
   function f (x, y, ...a) {
@@ -277,6 +277,7 @@ ES6新特性纵览及与ES5比较(中文版)
   }
   ```
 * 类继承，From Expressions
+* aggregation:聚合(数据库词汇)
 ```js
 var aggregation = (baseClass, ...mixins)=>{
   let base = class _Combined extends baseClass{
