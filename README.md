@@ -575,7 +575,18 @@ var aggregation = (baseClass, ...mixins)=>{
     console.log(n);
   }
   ```
-  * Generator Function, Direct Use
+  * 生成函数,直接使用。
+  ```js
+    function* range(start, end, step){
+      while(start<end){
+        yield start;
+        start+=step;
+      }
+    }
+    for(let i of range(0,10,2)){
+      console.log(i);
+    }
+  ```
   * Generator Matching
   * Generator Control-Flow
   * Generator Methods
