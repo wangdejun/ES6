@@ -209,11 +209,74 @@ ES6新特性纵览及与ES5比较(中文版)
 
 ### 9,解构赋值
 * Array Mathching
+* Intuitive and flexible destructuring of Arrays into
+* Individual variables during assignment;
+  ```js
+  var list = [ 1, 2, 3 ]
+  var [ a, , b ] = list
+  //交换a,b的值
+  [ b, a ] = [ a, b ]
+  ```
 * Object Matching, Shorthand Notation
+  ```js
+  //ES6 赋值过程中可以直接从函数expression value 中解构赋值
+  function getASTNode(){
+    let obj={op:12,lhs:12,rhs:13}; 
+    return obj
+  }
+  var { op, lhs, rhs } = getASTNode()
+  console.log(`op:${op} lhs:${lhs} rhs:${rhs}`)
+  
+  //ES5借助中间临时对象tmp
+  var tmp = getASTNode();
+  var op = tmp.op;
+  var lhs = tmp.lhs;
+  var rhs = tmp.rhs;
+  console.log(`op:${op} lhs:${lhs} rhs:${rhs}`)
+  ```
 * Object Matching, Deep Matching
+  ```js
+  //ES6
+  var { op: a, lhs: { op: b }, rhs: c } = getASTNode()
+  //ES5
+  var tmp = getASTNode();
+  var a = tmp.op;
+  var b = tmp.lhs.op;
+  var c = tmp.rhs;
+  ```
 * Object And Array Matching, Default Values
+  ```js
+  var obj = { a: 1 }
+  var list = [ 1 ]
+  var { a, b = 2 } = obj
+  var [ x, y = 2 ] = list
+  ```
 * Parameter Context Matching
+  * 更加直观地传递数组和对象Intuitive and flexible destructuring of Arrays and Objects into individual parameters during function calls.
+  ```js
+  function f ([ name, val ]) {
+      console.log(name, val)
+  }
+  function g ({ name: n, val: v }) {
+      console.log(n, v)
+  }
+  function h ({ name, val }) {
+      console.log(name, val)
+  }
+  f([ "bar", 42 ])
+  g({ name: "foo", val:  7 })
+  h({ name: "bar", val: 42 })
+  ```
 * Fail-Soft Destructing
+  ```js
+  var list = [ 7, 42 ]
+  var [ a = 1, b = 2, c = 3, d ] = list
+  a === 7
+  b === 42
+  c === 3
+  d === undefined
+  ```
+
 ### 10,模块
 * 导入/导出值
   ```js
