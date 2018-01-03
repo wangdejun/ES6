@@ -607,7 +607,7 @@
   ```
   * 生成器控制流
   ```js
-    //generic asynchronous control-flow driver
+    //公用异步控制流驱动
     function async(proc,...params){
       var iterator = proc(...params)
       return new Promise((resolve, reject)=>{
@@ -632,13 +632,13 @@
         loop();
       })
     }
-    // application-specific asynchronous builder
+    //异步构造器(application-specific)
     function makeAsync(text, after){
       return new Promise((resolve, reject)=>{
         setTimeout(()=>resolve(text),after)
       })
     }
-    // application-specific asynchronous procedure
+    //特定异步过程(application-specific)
     async(function* (greeting){
       let foo = yield makeAsync("foo", 300);
       let bar = yield makeAsync("bar", 200);
