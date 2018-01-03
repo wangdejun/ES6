@@ -269,7 +269,7 @@
   g({ name: "foo", val:  7 })
   h({ name: "bar", val: 42 })
   ```
-* Fail-Soft Destructing
+* Fail-Soft 解构
   ```js
   var list = [ 7, 42 ]
   var [ a = 1, b = 2, c = 3, d ] = list
@@ -370,34 +370,34 @@
   }
   ```
 * 类继承，From Expressions
-* aggregation:聚合(数据库词汇)
-```js
-var aggregation = (baseClass, ...mixins)=>{
-  let base = class _Combined extends baseClass{
-    constructor(...args){
-      super(...args);
-      mixins.forEach((mixin)=>{
-        mixin.prototype.initializer.call(this);
-      })
+  * aggregation:聚合(数据库词汇)
+  ```js
+  var aggregation = (baseClass, ...mixins)=>{
+    let base = class _Combined extends baseClass{
+      constructor(...args){
+        super(...args);
+        mixins.forEach((mixin)=>{
+          mixin.prototype.initializer.call(this);
+        })
+      }
     }
+    let copyProps = (target, source)=>{
+      Object.getOwnPropertyNames(source)
+            .concat(Object.getOwnPropertySymbols(source))
+            .forEach((prop)=>{
+              if(prop.match(/^(?:constructor|prototype|arguments|caller|name|bind|apply|toString|length)$/)){
+                return;
+              }
+              Object.defineProperty(target, prop, Object.getOwnPropertyDescriptor(source, prop))
+            })
+    }
+    mixins.forEach((mixin)=>{
+      copyProps(base.prototype, mixin.prototype);
+      copyProps(base, mixin);
+    })
+    return base;
   }
-  let copyProps = (target, source)=>{
-    Object.getOwnPropertyNames(source)
-          .concat(Object.getOwnPropertySymbols(source))
-          .forEach((prop)=>{
-            if(prop.match(/^(?:constructor|prototype|arguments|caller|name|bind|apply|toString|length)$/)){
-              return;
-            }
-            Object.defineProperty(target, prop, Object.getOwnPropertyDescriptor(source, prop))
-          })
-  }
-  mixins.forEach((mixin)=>{
-    copyProps(base.prototype, mixin.prototype);
-    copyProps(base, mixin);
-  })
-  return base;
-}
-```
+  ```
 * 基类
   * 直观地使用基类构造函数和方法
   ```js
