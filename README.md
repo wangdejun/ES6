@@ -684,7 +684,7 @@
   for (let [ key, val ] of m.entries())
       console.log(key + " = " + val)
   ```
-  * Weak-Link DataStructure
+  * 弱连接数据结构
   * Memory-leak-free Object-key's side-by-side data structures
   ```js
   let isMarked = new WeakSet()
