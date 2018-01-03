@@ -254,7 +254,7 @@
   var [ x, y = 2 ] = list
   ```
 * Parameter Context Matching
-  * 更加直观地传递数组和对象Intuitive and flexible destructuring of Arrays and Objects into individual parameters during function calls.
+  * 在函数调用过程中，更加直观灵活把数组和对象解构为单独的参数（Intuitive and flexible destructuring of Arrays and Objects into individual parameters during function calls.）
   ```js
   function f ([ name, val ]) {
       console.log(name, val)
