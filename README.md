@@ -1,4 +1,4 @@
-ES6新特性纵览及与ES5比较(中文版)
+## ES6新特性纵览及与ES5比较(中文版)
 <a href='http://es6-features.org/'>来自es6-features.org<a>
 
 ### 1,常量
@@ -11,7 +11,7 @@ ES6新特性纵览及与ES5比较(中文版)
 
 ### 2,作用域
 * 块作用域变量
-  * 没有变量上举的块级作用域变量(或常量). 
+  * 没有变量上举的块级作用域变量(或常量).
     ```js
     for (let i = 0; i < a.length; i++) {
         let x = a[i];
@@ -44,36 +44,35 @@ ES6新特性纵览及与ES5比较(中文版)
       }
     ```
 ### 3,箭头函数
-* 表达式体
-  ```js
-  let evens = [2,4,6,8,10];
-  let odds = [];
-  odds  = evens.map(v => v + 1);
-  pairs = evens.map(v => ({ even: v, odd: v + 1 }));
-  nums  = evens.map((v, i) => v + i);
-  ```
-  
-* 声明式体
-  ```js
-    nums.forEach(v => {
-      if (v % 5 === 0)
-        fives.push(v);
-    })
-  ```
+  * 表达式体
+    ```js
+    let evens = [2,4,6,8,10];
+    let odds = [];
+    odds  = evens.map(v => v + 1);
+    pairs = evens.map(v => ({ even: v, odd: v + 1 }));
+    nums  = evens.map((v, i) => v + i);
+    ```
 
-* Lexical this
-  * 更加直观绑定地对象词法环境，因此可以直接用this, this指向函数体内部context
-  
-  ```js
-  this.nums.forEach((v)=>{
-    if(v%5===0){
-      this.fives.push(v);
-    }
-  })
-  ```
+  * 声明式体
+    ```js
+      nums.forEach(v => {
+        if (v % 5 === 0)
+          fives.push(v);
+      })
+    ```
+
+  * Lexical this
+    * 更加直观绑定地对象词法环境，因此可以直接用this, this指向函数体内部context
+    ```js
+    this.nums.forEach((v)=>{
+      if(v%5===0){
+        this.fives.push(v);
+      }
+    })
+    ```
 
 ### 4,扩展参数处理
-* 默认参数值
+  * 默认参数值
   * 简单直观的函数参数默认值。
   ```js
   function f(x,y=7,z=42){
@@ -81,16 +80,19 @@ ES6新特性纵览及与ES5比较(中文版)
   }
   f(1) === 50;
   ```
-* 聚合剩余参数
-  * Aggregation of remaining arguments into single parameter of variadic functions.
+  * 用来聚合【变参函数】中的剩余参数
   ```js
   function f (x, y, ...a) {
-    return (x + y) * a.length
+    console.log("遍历变参函数中的参数")
+    for(let i=0; i<a.length; i++){
+      console.log(`a${i} : ${ a[i] }`)
+    }
+    return (x + y) * a.length;
   }
   f(1, 2, "hello", true, 7) === 9
   ```
-* 扩展操作符
-  * 扩展为单个字面元素组成的可迭代集(比如数组或者字符串)或者单个函数参数(Spreading of elements of an iterable collection (like an array or even a string) into both literal elements and individual function parameters.)
+  * 扩展操作符
+    * 扩展为单个字面元素组成的可迭代集(比如数组或者字符串)或者单个函数参数(Spreading of elements of an iterable collection (like an array or even a string) into both literal elements and individual function parameters.)
   ```js
   var params = ["Hello", true, 7]
   var other = [1, 2, ...params]
