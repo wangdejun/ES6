@@ -589,7 +589,7 @@
       console.log(i);
     }
   ```
-  * Generator Matching
+  * 生成器匹配
     * 支持生成函数，生成函数就是控制流可以停止和前进的以生成序列值的函数。
   ```js
   let fibonacci = function* (numbers) {
@@ -599,12 +599,13 @@
           yield cur
       }
   }
-  for (let n of fibonacci(1000))
-      console.log(n)
+  for (let n of fibonacci(1000)){
+    console.log(n)
+  }
   let numbers = [ ...fibonacci(1000) ]
   let [ n1, n2, n3, ...others ] = fibonacci(1000)
   ```
-  * Generator Control-Flow
+  * 生成器控制流
   ```js
     //generic asynchronous control-flow driver
     function async(proc,...params){
