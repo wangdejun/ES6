@@ -197,7 +197,7 @@
   }
   console.log(obj);
   ```
-* 方法属性(Method Porperties)
+* 方法属性
   ```js
   let obj = {
     foo(a,b){
@@ -212,6 +212,12 @@
 
 ### 9,解构赋值
 * Array Mathching
+* Intuitive and flexible destructuring of Arrays into individual variables during assignment.
+  ```js
+  var list = [ 1, 2, 3 ]
+  var [ a, , b ] = list
+  [ b, a ] = [ a, b ]
+  ```
 * Intuitive and flexible destructuring of Arrays into
 * Individual variables during assignment;
   ```js
