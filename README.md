@@ -648,19 +648,19 @@
       })
     })
   ```
-  * Generator Methods
-  ```js
-  class Clz {
-      * bar () {
-        ...
-      }
-  }
-  let Obj = {
-      * foo () {
-        ...
-      }
-  }
-  ```
+  * 生成器方法
+    ```js
+    class Clz {
+        * bar () {
+          ...
+        }
+    }
+    let Obj = {
+        * foo () {
+          ...
+        }
+    }
+    ```
 ### 15,图/集 弱图/集
   * Set Data-Structure
   * 需要特别指出的是，Set的遍历顺序就是插入顺序。这个特性有时非常有用，比如使用 Set 保存一个回调函数列表，调用时就能保证按照添加顺序调用。(阮一峰)
@@ -672,8 +672,8 @@
   for (let key of s.values()) // insertion order
       console.log(key)
   ```
-  * Map Data-Structure
-  * Cleaner data-structure for common algorithms based on maps;
+  * Map数据结构
+  * 一般图算法的的干净的数据结构;
   ```js
   let m = new Map()
   let s = Symbol()
