@@ -216,13 +216,6 @@
   ```js
   var list = [ 1, 2, 3 ]
   var [ a, , b ] = list
-  [ b, a ] = [ a, b ]
-  ```
-* Intuitive and flexible destructuring of Arrays into
-* Individual variables during assignment;
-  ```js
-  var list = [ 1, 2, 3 ]
-  var [ a, , b ] = list
   //交换a,b的值
   [ b, a ] = [ a, b ]
   ```
