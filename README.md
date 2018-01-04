@@ -44,13 +44,13 @@
   ```
 ### 3,箭头函数
   * 表达式体
-  ```js
-  let evens = [2,4,6,8,10];
-  let odds = [];
-  odds  = evens.map(v => v + 1);
-  pairs = evens.map(v => ({ even: v, odd: v + 1 }));
-  nums  = evens.map((v, i) => v + i);
-  ```
+    ```js
+    let evens = [2,4,6,8,10];
+    let odds = [];
+    odds  = evens.map(v => v + 1);
+    pairs = evens.map(v => ({ even: v, odd: v + 1 }));
+    nums  = evens.map((v, i) => v + i);
+    ```
 
   * 声明式体
   ```js
