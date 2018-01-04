@@ -489,7 +489,7 @@
       * 4.没有类似协议(protocol)或接口(Interface)等的概念。
 
 ### 12,标志类型(Symbol Type)
-* 用来作为对象属性的不可重和不可变数据类型，Symbol类型有可选的描述选项，但是只用来debug用
+  * 用来作为对象属性的不可重和不可变数据类型，Symbol类型有可选的描述选项，但是只用来debug用
   ```js
   Symbol("foo") !== Symbol("foo");
   const foo = Symbol();
@@ -504,7 +504,7 @@
   Object.getOwnPropertyNames(obj); // []
   Object.getOwnPropertySymbols(obj); // [ foo, bar ]
   ```
-* 全局Symbol
+  * 全局Symbol
   ```js
   Symbol.for("app.foo") === Symbol.for("app.foo")
   const foo = Symbol.for("app.foo");
@@ -522,9 +522,9 @@
   Object.getOwnPropertySymbols(obj); // [ foo, bar ]
   ```
 ### 13,迭代器
-* 第一，允许对象定制他们自己的遍历行为。
-* 第二，支持迭代协议产生一个值序列(有穷或无穷)。
-* 第三，为可遍历对象提供了一种便捷的遍历操作。
+  * 第一，允许对象定制他们自己的遍历行为。
+  * 第二，支持迭代协议产生一个值序列(有穷或无穷)。
+  * 第三，为可遍历对象提供了一种便捷的遍历操作。
   ```js
   //ES6
   let fibonacci = {
@@ -582,7 +582,7 @@
     console.log(n);
   }
   ```
-  * 生成函数,直接使用。
+  * 生成函数，直接使用。
   ```js
     function* range(start, end, step){
       while(start<end){
