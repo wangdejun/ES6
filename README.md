@@ -1,75 +1,74 @@
-## ES6新特性纵览及与ES5比较(中文版)
-<a href='http://es6-features.org/'>来自es6-features.org<a>
+## ES6新特性纵览
 
 ### 1,常量
 * 常量
   * 支持常量(不可改变量)，换句话说，变量一旦被定义，则不能被重新赋值。注意，只是变量本身不能够被改变，而常量指向的对象可以改变的。
-    ```js
-    const PI = 3.141593
-    PI > 3.0
-    ```
+  ```js
+  const PI = 3.141593
+  PI > 3.0
+  ```
 
 ### 2,作用域
 * 块作用域变量
   * 没有变量上举的块级作用域变量(或常量).
-    ```js
-    for (let i = 0; i < a.length; i++) {
-        let x = a[i];
-        …
-    }
-    for (let i = 0; i < b.length; i++) {
-        let y = b[i];
-        …
-    }
+  ```js
+  for (let i = 0; i < a.length; i++) {
+      let x = a[i];
+      …
+  }
+  for (let i = 0; i < b.length; i++) {
+      let y = b[i];
+      …
+  }
 
-    let callbacks = [];
-    for (let i = 0; i <= 2; i++) {
-        callbacks[i] = function () { return i * 2; };
-    }
-    callbacks[0]() === 0;
-    callbacks[1]() === 2;
-    callbacks[2]() === 4;
-    ```
+  let callbacks = [];
+  for (let i = 0; i <= 2; i++) {
+      callbacks[i] = function () { return i * 2; };
+  }
+  callbacks[0]() === 0;
+  callbacks[1]() === 2;
+  callbacks[2]() === 4;
+  ```
 * 块作用域函数
   * Block-scoped function definitions.
-    ```js
+  ```js
+    {
+      function foo(){ return 1;}
+      foo()===1;
       {
-        function foo(){ return 1;}
-        foo()===1;
-        {
-          function foo(){ return 2;}
-          foo()===2;
-        }
-        foo()===1;
+        function foo(){ return 2;}
+        foo()===2;
       }
-    ```
+      foo()===1;
+    }
+  ```
 ### 3,箭头函数
   * 表达式体
-    ```js
-    let evens = [2,4,6,8,10];
-    let odds = [];
-    odds  = evens.map(v => v + 1);
-    pairs = evens.map(v => ({ even: v, odd: v + 1 }));
-    nums  = evens.map((v, i) => v + i);
-    ```
+  ```js
+  let evens = [2,4,6,8,10];
+  let odds = [];
+  odds  = evens.map(v => v + 1);
+  pairs = evens.map(v => ({ even: v, odd: v + 1 }));
+  nums  = evens.map((v, i) => v + i);
+  ```
 
   * 声明式体
-    ```js
-      nums.forEach(v => {
-        if (v % 5 === 0)
-          fives.push(v);
-      })
-    ```
+  ```js
+    nums.forEach(v => {
+      if (v % 5 === 0)
+        fives.push(v);
+    })
+  ```
 
   * Lexical this
     * 更加直观绑定地对象词法环境，因此可以直接用this, this指向函数体内部context
-    ```js
-    this.nums.forEach((v)=>{
-      if(v%5===0){
-        this.fives.push(v);
-      }
-    })
-    ```
+  ```js
+  this.nums.forEach((v)=>{
+    if(v%5===0){
+      this.fives.push(v);
+    }
+  })
+  ```
 
 ### 4,扩展参数处理
   * 默认参数值
@@ -106,7 +105,7 @@
   ```
 
 ### 5,模板字面量
-* 字符串插入
+* 字符串注入
   * 向单行或多行字符串插入字符串(可以直接向多行插入字符串，与python类似)
   ```js
   var customer = { name: "Foo" }
@@ -116,8 +115,8 @@
   a total of ${card.amount * card.unitprice} bucks?`
   console.log(message);
   ```
-* 常见插入
-  向任意方法插入字符串
+* 常见注入
+  向任意方法注入字符串
   ```js
   get`http://example.com/foo?bar=${bar + baz}&quux=${quux}`
   ```
@@ -152,7 +151,7 @@
   }
   ```
 ### 7,增强正则表达式
-* Regular Expression Sticky Matching(understand)
+  * Regular Expression Sticky Matching(understand)
   ```js
   let parser = (input, match)=>{
     for(let pos=0; lastPos = input.length; pos<lastPos;){
@@ -179,14 +178,14 @@
   ])
   ```
 ### 8,增强对象属性
-* property shorthand
+  * property shorthand
   ```js
   let x = 'key1';
   let y = 'key2';
   obj = { x, y }
   console.log(obj);
   ```
-* Computed属性名
+  * 由计算而知的属性名
   ```js
   function quux(){
     return 'function expression value'
@@ -197,7 +196,7 @@
   }
   console.log(obj);
   ```
-* 方法属性
+  * 方法属性
   ```js
   let obj = {
     foo(a,b){
@@ -211,17 +210,17 @@
   ```
 
 ### 9,解构赋值
-* Array Mathching
-* Intuitive and flexible destructuring of Arrays into individual variables during assignment.
+  * Array Mathching
+  * 在赋值时，将数组自由灵活地结构为单个变量。
   ```js
   var list = [ 1, 2, 3 ]
   var [ a, , b ] = list
   //交换a,b的值
   [ b, a ] = [ a, b ]
   ```
-* Object Matching, Shorthand Notation
+  * 简洁地对象匹配赋值
   ```js
-  //ES6 赋值过程中可以直接从函数expression value 中解构赋值
+  //ES6 赋值过程中可以直接从函数生成的对象中解构赋值
   function getASTNode(){
     let obj={op:12,lhs:12,rhs:13}; 
     return obj
@@ -236,7 +235,7 @@
   var rhs = tmp.rhs;
   console.log(`op:${op} lhs:${lhs} rhs:${rhs}`)
   ```
-* Object Matching, Deep Matching
+* 对象匹配，深度匹配
   ```js
   //ES6
   var { op: a, lhs: { op: b }, rhs: c } = getASTNode()
@@ -253,8 +252,9 @@
   var { a, b = 2 } = obj
   var [ x, y = 2 ] = list
   ```
-* Parameter Context Matching
-  * 在函数调用过程中，更加直观灵活把数组和对象解构为单独的参数（Intuitive and flexible destructuring of Arrays and Objects into individual parameters during function calls.）
+* 根据上下文参数匹配：
+  * 在函数调用过程中，更加直观灵活把数组和对象解构为单独的参数
+  * Intuitive and flexible destructuring of Arrays and Objects into individual parameters during function calls.
   ```js
   function f ([ name, val ]) {
       console.log(name, val)
@@ -269,7 +269,7 @@
   g({ name: "foo", val:  7 })
   h({ name: "bar", val: 42 })
   ```
-* Fail-Soft 解构
+* Fail-Soft解构
   ```js
   var list = [ 7, 42 ]
   var [ a = 1, b = 2, c = 3, d ] = list
@@ -307,7 +307,7 @@
   ```
 
 ### 11,类
-* 类定义
+  * 类定义Definations
   ```js
   class Shape{
       constructor(id, x, y){
@@ -323,7 +323,7 @@
   let shape = new Shape(1,123,123324)
   console.log(shape);
   ```
-* 类继承
+  * 类继承Inherence
   ```js
   //Shaple类
   class Shape{
@@ -396,8 +396,8 @@
     return base;
   }
   ```
-* 基类
-  * 直观地使用基类构造函数和方法
+  * 基类BaseClass
+    * 直观地使用基类构造函数和方法
   ```js
   //Shaple class 
   class Shape{
@@ -437,7 +437,7 @@
   let bordercircle = new BorderCircle(3,800,600,16.5, 2)
   console.log(bordercircle.toString())//BorderCircle > Circle > Shape(3)能显式的看到继承顺序
   ```
-* 静态成员
+  * 静态成员
   * 对静态类成员(方法)的简单支持
   ```js
   class Rectangle extends Shape{
@@ -453,7 +453,7 @@
       return new Circle("default", 0, 0, 100);
   }
   ```
-* Getter/Setter
+  * Getter/Setter
   * Getter/Setter 也直接在类内部
   ```js
   class Rectangle{
@@ -481,12 +481,13 @@
   r.area ===1000
 
   ```
-* 遗憾与期望
-  * 就目前来说，ES2015的类机制依然很鸡肋：
-  * 1.不支持私有属性(private)
-  * 2.不支持前置属性定义，但可以用get语句和set语句
-  * 3.不支持多重继承
-  * 4.没有类似协议(protocol)或接口(Interface)等的概念。
+  * 遗憾与期望
+    * 就目前来说，ES2015的类机制依然很鸡肋：
+      * 1.不支持私有属性(private)
+      * 2.不支持前置属性定义，但可以用get语句和set语句
+      * 3.不支持多重继承
+      * 4.没有类似协议(protocol)或接口(Interface)等的概念。
+
 ### 12,标志类型(Symbol Type)
 * 用来作为对象属性的不可重和不可变数据类型，Symbol类型有可选的描述选项，但是只用来debug用
   ```js
@@ -774,3 +775,7 @@
   * Number Formatting
   * Currency Formatting
   * Data/Time Formatting
+
+
+*【参考资料】
+<a href='http://es6-features.org/'>来自es6-features.org<a>
