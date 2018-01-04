@@ -563,6 +563,8 @@
     }
     ```
 ### 14,生成器(Generator)
+  * Generator 的设计初衷是为了提供一种能够简便地生成一系列对象的方法，如计算斐波那契数列（Fibonacci Sequence):
+  * <img src="http://ww3.sinaimg.cn/large/7287333fgw1exvs4e5oivj20c0080gm4.jpg"/>
   * 支持生成器，用于生成序列，控制流可以暂停，可以继续，以便产生一个值序列
     ```js
     let fibonacci = {
@@ -775,5 +777,6 @@
   * Data/Time Formatting
 
 
-*【参考资料】
-<a href='http://es6-features.org/'>来自es6-features.org<a>
+### 参考资料
+  * <a href='http://es6-features.org/'>es6-features.org<a>
+  * <a href='http://gank.io/post/564151c1f1df1210001c9161'>给JavaScript初心者的ES2015实战</a>
