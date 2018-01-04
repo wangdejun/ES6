@@ -662,8 +662,8 @@
     }
     ```
 ### 15,图/集 弱图/集
-  * Set Data-Structure
-  * 需要特别指出的是，Set的遍历顺序就是插入顺序。这个特性有时非常有用，比如使用 Set 保存一个回调函数列表，调用时就能保证按照添加顺序调用。(阮一峰)
+  * 【Set】
+    * 需要特别指出的是，Set的遍历顺序就是插入顺序。这个特性有时非常有用，比如使用 Set 保存一个回调函数列表，调用时就能保证按照添加顺序调用。(阮一峰)
   ```js
   let s = new Set()
   s.add("hello").add("goodbye").add("hello")
@@ -672,8 +672,25 @@
   for (let key of s.values()) // insertion order
       console.log(key)
   ```
-  * Map数据结构
-  * 一般图算法的的干净的数据结构;
+  * 【weakSet】
+  * WeakSet 在 JavaScript 底层作出调整（在非降级兼容的情况下），检查元素的变量引用情况。如果元素的引用已被全部解除，则该元素就会被删除，以节省内存空间。这意味著无法直接加入数字或者字符串。另外 WeakSet 对元素有严格要求，必须是 Object，当然了，你也可以用 new String('...') 等形式处理元素。
+  ```js
+  let weaks = new WeakSet()
+  weaks.add("hello") //=> Error
+  weaks.add(3.1415) //=> Error
+
+  let foo = new String("bar")
+  let pi = new Number(3.1415)
+  weaks.add(foo)
+  weaks.add(pi)
+  weaks.has(foo) //=> true
+  foo = null
+  weaks.has(foo) //=> false
+  ```
+  * Map
+    * 从数据结构的角度来说，映射（Map）跟原本的 Object 非常相似，都是 Key/Value 的键值对结构。但是 Object 有一个让人非常不爽的限制：key 必须是字符串或数字。在一般情况下，我们并不会遇上这一限制，但若我们需要建立一个对象映射表时，这一限制显得尤为棘手。
+
+    * 而 Map 则解决了这一问题，可以使用任何对象作为其 key，这可以实现从前不能实现或难以实现的功能，如在项目逻辑层实现数据索引等。
   ```js
   let m = new Map()
   let s = Symbol()
@@ -684,22 +701,17 @@
   for (let [ key, val ] of m.entries())
       console.log(key + " = " + val)
   ```
-  * 弱连接数据结构
-  * Memory-leak-free Object-key's side-by-side data structures
+  * 【WeakMap】
+    * 键值都是Object,与WeakSet很相似，weakMap不同的是对键值都会检查变量引用，只要key-value有一个引用被解除，那么该键值全部会被删除
   ```js
-  let isMarked = new WeakSet()
-  let attachedData = new WeakMap()
-  
-  export classs Node{
-    constructor(id){ this.id = id}
-    mark(){isMarked.add(this)}
-    unmark(){isMarked.delete(this)}
-    marked(){return isMarked.has(this)}
-    set data (data){attachedData.set(this, data)}
-    get data (){return attachedData.get(this)}
-  }
+  let weakm = new WeakMap()
+  let keyObject = { id: 1 }
+  let valObject = { score: 100 }
 
-  let foo = new Node("foo")
+  weakm.set(keyObject, valObject)
+  weakm.get(keyObject) //=> { score: 100 }
+  keyObject = null
+  weakm.has(keyObject) //=> false
   ```
 ### 16,类型数组
   * Typed Array
@@ -714,7 +726,8 @@
   * 数字Trunction
   * 数字Sign Determination
 ### 18,Promises
-  * 使用Promise
+
+*  使用Promise
   ```js
   function msgAfterTimeout (msg, who, timeout) {
       return new Promise((resolve, reject) => {
