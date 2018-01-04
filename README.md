@@ -484,10 +484,10 @@
       * 1.不支持私有属性(private)
       * 2.不支持前置属性定义，但可以用get语句和set语句
       * 3.不支持多重继承
-      * 4.没有类似协议(protocol)或接口(Interface)等的概念。
+      * 4.没有类似协议(Protocol)或接口(Interface)等的概念。
 
 ### 12,标志类型(Symbol Type)
-  * 用来作为对象属性的不可重和不可变数据类型，Symbol类型有可选的描述选项，但是只用来debug用
+  * 用来作为对象属性的不可重和不可变数据类型，Symbol类型有可选的描述选项，但是只用来debug用
     ```js
     Symbol("foo") !== Symbol("foo");
     const foo = Symbol();
@@ -580,7 +580,7 @@
       console.log(n);
     }
     ```
-  * 生成函数，直接使用。
+  * 生成函数，直接使用。
     ```js
     function* range(start, end, step){
       while(start<end){
@@ -705,7 +705,7 @@
         console.log(key + " = " + val)
     ```
   * 【WeakMap】
-    * 键值都是Object,与WeakSet很相似，weakMap不同的是对键值都会检查变量引用，只要key-value有一个引用被解除，那么该键值全部会被删除
+    * 键值都是Object,与WeakSet很相似，weakMap不同的是对键值都会检查变量引用，只要key-value有一个引用被解除，那么该键值全部会被删除
     ```js
     let weakm = new WeakMap()
     let keyObject = { id: 1 }
