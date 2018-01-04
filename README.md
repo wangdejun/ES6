@@ -325,7 +325,7 @@
   ```
 * 类继承
   ```js
-  //Shaple class
+  //Shaple类
   class Shape{
       constructor(id, x, y){
           this.id = id;
@@ -355,9 +355,7 @@
   let shape = new Shape(1,123,123324)
   let rectangle = new Rectangle(2,123,1233,1000,2000);
   let circle = new Circle(3,800,600,16.5);
-  console.log(shape);
-  console.log(rectangle);
-  console.log(circle);
+  console.log(Shape: ${ shape } Rectangle: ${ rectangle } Circle: ${ circle });
   //iterate the attributes in the circle instance created above.
   //*NOTICE*/ for...of(new in ES6) cannot iterate attrs in a Object intance which is not iterable.
   for(i of circle){
@@ -673,7 +671,7 @@
       console.log(key)
   ```
   * 【weakSet】
-  * WeakSet 在 JavaScript 底层作出调整（在非降级兼容的情况下），检查元素的变量引用情况。如果元素的引用已被全部解除，则该元素就会被删除，以节省内存空间。这意味著无法直接加入数字或者字符串。另外 WeakSet 对元素有严格要求，必须是 Object，当然了，你也可以用 new String('...') 等形式处理元素。
+    * WeakSet 在 JavaScript 底层作出调整（在非降级兼容的情况下），检查元素的变量引用情况。如果元素的引用已被全部解除，则该元素就会被删除，以节省内存空间。这意味著无法直接加入数字或者字符串。另外 WeakSet 对元素有严格要求，必须是 Object，当然了，你也可以用 new String('...') 等形式处理元素。
   ```js
   let weaks = new WeakSet()
   weaks.add("hello") //=> Error
@@ -687,7 +685,7 @@
   foo = null
   weaks.has(foo) //=> false
   ```
-  * Map
+  * 【Map】
     * 从数据结构的角度来说，映射（Map）跟原本的 Object 非常相似，都是 Key/Value 的键值对结构。但是 Object 有一个让人非常不爽的限制：key 必须是字符串或数字。在一般情况下，我们并不会遇上这一限制，但若我们需要建立一个对象映射表时，这一限制显得尤为棘手。
 
     * 而 Map 则解决了这一问题，可以使用任何对象作为其 key，这可以实现从前不能实现或难以实现的功能，如在项目逻辑层实现数据索引等。
