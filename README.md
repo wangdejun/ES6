@@ -564,9 +564,7 @@
     ```
 ### 14,生成器(Generator)
   * Generator 的设计初衷是为了提供一种能够简便地生成一系列对象的方法，如计算斐波那契数列（Fibonacci Sequence):
-    <div style="align: center">
-      <img src="http://ww3.sinaimg.cn/large/7287333fgw1exvs4e5oivj20c0080gm4.jpg"/>
-    </div>
+    <img src="http://ww3.sinaimg.cn/large/7287333fgw1exvs4e5oivj20c0080gm4.jpg"/>
   * 支持生成器，用于生成序列，控制流可以暂停，可以继续，以便产生一个值序列
     ```js
     let fibonacci = {
