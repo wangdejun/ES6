@@ -721,8 +721,19 @@
 ### 16,类型数组
   * Typed Array
 ### 17,新型内置方法
-  * 对象赋值
+  * 对象属性赋值
+    * 把多个对象的属性赋值到一个对象上
+    ```
+    var dest = { quux: 0 }
+    var src1 = { foo: 1, bar: 2 }
+    var src2 = { foo: 3, baz: 4 }
+    Object.assign(dest, src1, src2)
+    ```
   * 数组元素查找
+```js
+[ 1, 3, 4, 2 ].find(x => x > 3) // 4
+[ 1, 3, 4, 2 ].findIndex(x => x > 3) // 2
+```
   * 字符串复制
   * 字符串搜索
   * 数字类型检查
