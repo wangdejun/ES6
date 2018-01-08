@@ -733,23 +733,24 @@
 
 ### 18,Promises
   * 使用Promise
-    ```js
-    function msgAfterTimeout (msg, who, timeout) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => resolve(`${msg} Hello ${who}!`), timeout);
-        });
-    }
-    msgAfterTimeout("", "Foo", 100).then((msg) =>
-        msgAfterTimeout(msg, "Bar", 200)
-    ).then((msg) => {
-        console.log(`done after 300ms:${msg}`);
-    });
-    ```
+      ```js
+      function msgAfterTimeout (msg, who, timeout) {
+          return new Promise((resolve, reject) => {
+              setTimeout(() => resolve(`${msg} Hello ${who}!`), timeout);
+          });
+      }
+      msgAfterTimeout("", "Foo", 100).then((msg) =>
+          msgAfterTimeout(msg, "Bar", 200)
+      ).then((msg) => {
+          console.log(`done after 300ms:${msg}`);
+      });
+      ```
 
   * 合并promise
     ```js
+    //异步获取数据函数
     function fetchAsync (url, timeout, onData, onError) {
-        …
+
     }
     let fetchPromised = (url, timeout) => {
         return new Promise((resolve, reject) => {
@@ -767,9 +768,27 @@
         console.log(`error: ${err}`);
     });
     ```
-### 19,元编程
-  * Proxying
-  * Reflection
+### 19,元编程(Meta-Programming)
+  * 代理(Proxying)
+    * Hooking into runtime-level meta-operations
+    ```js
+    let target = {
+      foo:'Welcome, foo'
+    }
+    let proxy = new Proxy(target, {
+      get (receiver, name){
+        return name in receiver ? receiver[name] : `Hello, ${name}`
+      }
+    })
+    ```
+  * 反射(Reflection)
+    * Make calls correstponding to the object meta-operations
+    ```js
+    let obj = { a:1 }
+    Object.defineProperty(obj, 'b', {value:2})
+    obj[Symbol('c')]=3;
+    Reflect.ownKeys(obj)
+    ```
 ### 20,国际化和本地化
   * Collation
   * Number Formatting
@@ -780,3 +799,5 @@
 ### 参考资料
   * <a href='http://es6-features.org/'>es6-features.org<a>
   * <a href='http://gank.io/post/564151c1f1df1210001c9161'>给JavaScript初心者的ES2015实战</a>
+
+
