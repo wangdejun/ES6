@@ -730,15 +730,43 @@
     Object.assign(dest, src1, src2)
     ```
   * 数组元素查找
-```js
-[ 1, 3, 4, 2 ].find(x => x > 3) // 4
-[ 1, 3, 4, 2 ].findIndex(x => x > 3) // 2
-```
+    ```js
+    [ 1, 3, 4, 2 ].find(x => x > 3) // 4
+    [ 1, 3, 4, 2 ].findIndex(x => x > 3) // 2
+    ```
   * 字符串复制
+    ```js
+    " ".repeat(4 * depth)
+    "foo".repeat(3)
+    ```
   * 字符串搜索
+    ```js
+    "hello".startsWith("ello", 1) // true
+    "hello".endsWith("hell", 4)   // true
+    "hello".includes("ell")       // true
+    "hello".includes("ell", 1)    // true
+    "hello".includes("ell", 2)    // false
+    ```
   * 数字类型检查
+    ```js
+    Number.isNaN(42) === false
+    Number.isNaN(NaN) === true
+
+    Number.isFinite(Infinity) === false
+    Number.isFinite(-Infinity) === false
+    Number.isFinite(NaN) === false
+    Number.isFinite(123) === true
+    ```
   * 数字安全检查
+    ```js
+    Number.isSafeInteger(42) === true
+    Number.isSafeInteger(9007199254740992) === false
+    ```
   * 数字对比
+  * ```js
+    console.log(0.1 + 0.2 === 0.3) // false
+    console.log(Math.abs((0.1 + 0.2) - 0.3) < Number.EPSILON) // true
+  * ```
   * 数字Trunction
   * 数字Sign Determination
 
