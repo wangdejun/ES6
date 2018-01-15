@@ -835,6 +835,30 @@
   * Data/Time Formatting
 
 
+###21
+```js
+static void Main(string[] args){
+    Test();
+    Console.WriteLine("Test End!");
+    Console.ReadLine();
+}
+
+static async void Test(){
+    await Test1();
+    Console.WriteLine("Test1 End!");
+}
+
+static Task Test1(){
+    Thread.Sleep(1000);
+    Console.WriteLine("create task in test1");
+    return Task.Run(() =>{
+        Thread.Sleep(3000);
+        Console.WriteLine("Test1");
+    });
+}
+```
+
+
 ### 参考资料
   * <a href='http://es6-features.org/'>es6-features.org<a>
   * <a href='http://gank.io/post/564151c1f1df1210001c9161'>给JavaScript初心者的ES2015实战</a>
