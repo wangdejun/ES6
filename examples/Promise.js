@@ -28,13 +28,21 @@
  * 第三，当处于 Pending 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。
  */
 
-function fetchAsync (url, timeout, onData, onError) {
+
+    // https://modesens.com/hint2/
+
+
+
+function fetchAsync (url, timeout, onData, onError){
+    
 }
+
 let fetchPromised = (url, timeout) => {
     return new Promise((resolve, reject) => {
         fetchAsync(url, timeout, resolve, reject);
     });
 }
+
 Promise.all([
     fetchPromised("http://backend/foo.txt", 500),
     fetchPromised("http://backend/bar.txt", 500),
@@ -46,9 +54,3 @@ Promise.all([
     console.log(`error: ${err}`);
 });
 
-
-let fetchPromised = (url, timeout)=>{
-    return new Promise((resolve, reject)=>{
-        fetch
-    })
-}

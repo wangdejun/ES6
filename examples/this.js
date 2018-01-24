@@ -13,7 +13,7 @@ var obj1 = {
             console.log(this.num);
         }, 1000);
     }
-}
+};
 
 obj1.getnum1()
 console.log(this);
