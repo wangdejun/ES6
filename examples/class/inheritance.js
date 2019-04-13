@@ -12,6 +12,7 @@ class Shape{
         return `Shape(${ this.id })`
     }
 }
+
 // Rectangle class inherit from Shape class
 class Rectangle extends Shape{
     constructor(id,x,y,width,height){
@@ -34,6 +35,7 @@ class Circle extends Shape{
         return "Circle > " + super.toString();
     }
 }
+
 // BorderCircle class inheriting from Circle class itself
 class BorderCircle extends Circle{
     constructor(id, x, y, radius, borderWidth){

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ReactTest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.3.2/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.3.2/umd/react-dom.production.min.js"></script>
+</head>
+<body>
+    <div id='root'>wangdejun</div>
+    <script type="text/babel">
+        class Simple extends React.Component{
+            constructor(){
+                super();
+                console.log("constructor hook function was called")
+            }
+            state = {
+                number:1
+            }
+            static getDerivedStateFromProps(){
+                console.log('getDerivedStateFromProps');
+            }
+
+            UNSAFE_componentWillMount(){
+                console.log("unsafe componentDidMount")                
+            }
+            componentWillMount(){
+                console.log("componentWillMount")
+            }
+            componentDidMount(){
+                console.log("componentDidMount")
+            }
+            componentWillReceiveProps(){
+                console.log("WillReceiveProp")
+            }
+            componentWillUpdate(){
+                console.log("componentWillUpdate")
+            }
+            add = () =>{
+                this.setState({number:2});
+            }
+
+            render(){
+                console.log("render hook function was called");
+                return <div>
+                    Hello World!!{this.state.number}
+                    <button onClick = {this.add}>+</button>
+                </div>;
+            }
+        }
+
+        ReactDOM.render(<Simple/>,document.getElementById('root'));
+    </script>
+</body>
+</html>

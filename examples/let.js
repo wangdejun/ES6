@@ -4,4 +4,8 @@ if(a){
 	var c = 12;
 }
 console.log(c) //12
-console.log(b) //"undefined"
+try{
+	console.log(b) //"undefined"
+}catch(e){
+	console.log(e.toString())
+}
