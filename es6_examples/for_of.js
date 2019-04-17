@@ -5,5 +5,5 @@ for (v of someArray) {
 }
 
 for (x in someArray) {
-	console.log(x);
+	console.log(x); //输出 0,1,2
 }
