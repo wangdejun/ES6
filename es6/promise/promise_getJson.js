@@ -1,4 +1,4 @@
-const getJSON = function(url) {
+const getJson = function(url) {
     const promise = new Promise(function(resolve, reject) {
       const handler = function() {
         if (this.readyState !== 4) {return;}
@@ -19,7 +19,7 @@ const getJSON = function(url) {
     return promise;
   };
 
-getJSON('https://modesens.com/designer/adidas/?format=json').then( function(json){
+getJson('https://modesens.com/designer/adidas/?format=json').then( function(json){
     console.log(json);
 }, function(error) {
     console.error('出错了', error);
